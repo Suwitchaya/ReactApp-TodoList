@@ -15,22 +15,45 @@ const styles = theme => ({
   },
 });
 
-function DatePickers(props) {
-  const { classes } = props;
-
-  return (
-    <form className={classes.container} noValidate>
+class DatePickers extends React.Component {
+  state={
+    date:"2017-05-24",
+    time:"07:30"
+  }
+changeDate=(e)=>{
+  this.setState({[e.target.name]:e.target.value});
+console.log(e.target.name +"+"+e.target.value);
+}
+ render(){
+    return (
+    <form noValidate>
       <TextField
-         id="datetime-local"
-         type="datetime-local"
-         defaultValue="2017-05-24T10:30"
-         className={classes.textField}
+         id="date"
+         type="date"
+         value={this.state.date}
+         onChange={this.changeDate}
          InputLabelProps={{
            shrink: true,
          }}
+          inputProps={{
+          "name": "date", // 5 min
+        }}
+      />
+       <TextField
+        id="time"
+        type="time"
+        value={this.state.time}
+        onChange={this.changeDate}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          "name": "time", // 5 min
+        }}
       />
     </form>
   );
+ }
 }
 
 DatePickers.propTypes = {

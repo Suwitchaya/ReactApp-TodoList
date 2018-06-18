@@ -31,9 +31,6 @@
   justify-content: space-between;
   align-items: center;
 }
-.DatePickers-textField-99{
-  width: unset !important;
-}
 .MuiDialog-paper-34 {
   width: 400px;
 }
@@ -41,4 +38,7 @@
 .list-item{
   border-bottom: 1ex;
   border-bottom-color: #222;
+}
+.DatePickers-textField-131 {
+
 }

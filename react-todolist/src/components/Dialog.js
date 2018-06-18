@@ -6,8 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import DatePickers from './DatePickers';
+import Input from '@material-ui/core/Input';
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -16,7 +17,8 @@ class AlertDialogSlide extends React.Component {
   state = {
     open: false,
     title: "",
-    des: ""
+    des: "",
+    date:""
   };
 
   handleClickOpen = () => {
@@ -27,31 +29,34 @@ class AlertDialogSlide extends React.Component {
     this.setState({ open: false });
   };
   addTodoList = () => {
-    const inputTitle = this.refs.title;
-    const inputDes = this.refs.des;
+    const inputTitle = this.state.title;
+    const inputDes = this.state.des;
     // this.state.data.push({ list: input.value })
     // this.setState({ data: [...this.state.data, input.value] });
-    console.log("inputTitle: "+inputTitle.value);
-    console.log("inputDes: "+inputDes.value);
+    console.log("inputTitle: "+inputTitle);
+    console.log("inputDes: "+inputDes);
   }
-  changeTitle = (key)=>{
-    const input = key.target.value;
-    console.log(input);
+  handleChange = (key)=>{
+    let input = key.target.value;
+    this.setState({[key.target.name]:input})
+    console.log(key.target.name+"+"+input);
   }
-  changeDes = (key)=>{
-    const input = key.target.value;
-    console.log(input);
-  }
+  clickDate = (x) => {
+    // this.setState({
+    //   controlledDate: date,
+    // });
+    console.log("date:"+x.target.value);
+  };
   render() {
-    const Input = styled.input`
-    padding: 0.5em;
-    margin: 0.5em;
-    color: palevioletred;
-    background: papayawhip;
-    border: none;
-    border-radius: 3px;
-    width:60%;
-  `;
+  //   const Input = styled.input`
+  //   padding: 0.5em;
+  //   margin: 0.5em;
+  //   color: palevioletred;
+  //   background: papayawhip;
+  //   border: none;
+  //   border-radius: 3px;
+  //   width:60%;
+  // `;
     return (
       <div>
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>ADD</Button>
@@ -68,12 +73,25 @@ class AlertDialogSlide extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-            <div className="text-lable"> <span> Title : </span><Input placeholder="Title" name="title" type="text" ref="title" onChange={this.changeTitle.bind(this)} /></div>
-            <div className="text-lable"> <span> Description : </span><Input placeholder="Description" name="des" type="text" ref="des" onChange={this.changeDes.bind(this)} /></div>
-            <div className="text-lable"> <span> Date : </span><DatePickers /></div>
+            <div className="text-lable"> <span> Title : </span><Input
+        placeholder="Description"
+        onChange={this.handleChange}
+        inputProps={{
+          'name': 'title',
+        }} />
+        </div>
+            <div className="text-lable"> <span> Description : </span><Input
+        placeholder="Description"
+        onChange={this.handleChange}
+        inputProps={{
+          'name': 'des',
+        }}
+      /></div>
+            <div className="text-lable"> <span> Date : </span><DatePickers onClick={this.clickDate} /></div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
+            {this.state.des}
             <Button variant="outlined"  onClick={this.addTodoList} color="primary">
               ADD
             </Button>
