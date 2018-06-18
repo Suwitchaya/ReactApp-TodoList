@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
-import AddList from "./components/addList.js";
-
+//import Popup from "reactjs-popup";
+import AlertDialogSlide from './components/Dialog';
+import ControlledOpenSelect from './components/Select';
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">TODO List</h1>
-        </header>
-        <AddList />
-         <div id="myModal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
-          </div>
-        </div>
+      <h1>TODO List</h1>
+    <AlertDialogSlide />
+    <ControlledOpenSelect />
       </div>
     );
   }
